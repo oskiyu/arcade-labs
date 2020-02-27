@@ -11,27 +11,28 @@ y = 0
 izquierda = True
 arriba = True
 
-def on_draw(delta_time):
-    #Update
+
+def on_update(delta_time):
     if on_draw.izquierda:
         on_draw.x += 5 * 30 * delta_time
-        if (on_draw.x > 800 - 25):
+        if on_draw.x > 800 - 25:
             on_draw.izquierda = False
     else:
         on_draw.x -= 5 * 30 * delta_time
-        if (on_draw.x < 0 + 25):
+        if on_draw.x < 0 + 25:
             on_draw.izquierda = True
 
-    if (on_draw.arriba):
+    if on_draw.arriba:
         on_draw.y += 5 * 30 * delta_time
-        if (on_draw.y > 600 - 25):
+        if on_draw.y > 600 - 25:
             on_draw.arriba = False
     else:
         on_draw.y -= 5 * 30 * delta_time
-        if (on_draw.y < 0 + 25):
+        if on_draw.y < 0 + 25:
             on_draw.arriba = True
 
-    #draw
+
+def on_draw(delta_time):
     arcade.start_render()
 
     arcade.draw_circle_filled(800, 600, 120, arcade.color.YELLOW)
@@ -54,7 +55,7 @@ def on_draw(delta_time):
     arcade.draw_rectangle_filled(100, 100, 50, 20, arcade.color.YELLOW)
     arcade.draw_text("XD " + str(int(1 / delta_time)), 300, 200, arcade.color.AMETHYST, 30)
 
-    arcade.draw_triangle_filled(250 + 40, 350, 250, 350 - 100, 250 + 80, 350 - 100, arcade  .color.GO_GREEN)
+    arcade.draw_triangle_filled(250 + 40, 350, 250, 350 - 100, 250 + 80, 350 - 100, arcade.color.GO_GREEN)
     arcade.draw_triangle_outline(250 + 40, 350, 250, 350 - 100, 250 + 80, 350 - 100, arcade.color.GREEN)
 
     arcade.draw_ellipse_filled(290, 285, 50, 20, arcade.color.BLACK)
@@ -76,7 +77,9 @@ def main():
     arcade.open_window(800, 600, "XD")
     arcade.set_background_color(arcade.color.FRESH_AIR)
 
-    arcade.schedule(on_draw, 1/60)
+    arcade.schedule(on_update, 1 / 60)
+    arcade.schedule(on_draw, 1 / 60)
+
     arcade.run()
 
 
