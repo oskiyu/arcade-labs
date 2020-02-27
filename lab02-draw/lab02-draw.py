@@ -13,23 +13,27 @@ arriba = True
 
 
 def on_update(delta_time):
-    if on_draw.izquierda:
-        on_draw.x += 5 * 30 * delta_time
-        if on_draw.x > 800 - 25:
-            on_draw.izquierda = False
+    global x
+    global y
+    global izquierda
+    global arriba
+    if izquierda:
+        x += 5 * 30 * delta_time
+        if x > 800 - 25:
+            izquierda = False
     else:
-        on_draw.x -= 5 * 30 * delta_time
-        if on_draw.x < 0 + 25:
-            on_draw.izquierda = True
+        x -= 5 * 30 * delta_time
+        if x < 0 + 25:
+            izquierda = True
 
-    if on_draw.arriba:
-        on_draw.y += 5 * 30 * delta_time
-        if on_draw.y > 600 - 25:
-            on_draw.arriba = False
+    if arriba:
+        y += 5 * 30 * delta_time
+        if y > 600 - 25:
+            arriba = False
     else:
-        on_draw.y -= 5 * 30 * delta_time
-        if on_draw.y < 0 + 25:
-            on_draw.arriba = True
+        y -= 5 * 30 * delta_time
+        if y < 0 + 25:
+            arriba = True
 
 
 def on_draw(delta_time):
@@ -64,13 +68,7 @@ def on_draw(delta_time):
 
     arcade.draw_arc_filled(750, 575, 15, 20, arcade.color.BLACK, 180, 360)
 
-    arcade.draw_circle_filled(on_draw.x, on_draw.y, 25, arcade.color.BLUE)
-
-
-on_draw.x = x
-on_draw.y = y
-on_draw.arriba = arriba
-on_draw.izquierda = izquierda
+    arcade.draw_circle_filled(x, y, 25, arcade.color.BLUE)
 
 
 def main():
